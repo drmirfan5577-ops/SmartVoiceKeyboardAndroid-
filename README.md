@@ -35,6 +35,16 @@ npm run reset-project
 npm run lint
 ```
 
+## Deploy the web app on Netlify
+
+This Expo project supports Android, iOS, and Web. Netlify hosts the exported web app; it does not produce an Android APK or AAB.
+
+The repository's `netlify.toml` uses Node 22, explicitly installs dependencies with `npx --yes pnpm@9.15.9 install --frozen-lockfile --prod=false`, runs `npm run build:web`, and publishes `dist`. This also supports deploy environments that skip automatic dependency installation or lack a global pnpm executable. Development dependencies are included because the export needs build tooling. Expo Router is configured for static web output in `app.json`.
+
+Install dependencies with `pnpm install --frozen-lockfile`. When changing dependencies, use pnpm and commit both `package.json` and `pnpm-lock.yaml` so Netlify's frozen installation stays in sync.
+
+If a deployment fails during installation, inspect the complete log after “Installing dependencies” for the actual error. That line alone does not identify the failure.
+
 ## Main Dependencies
 
 - React Native: 0.79.4
@@ -42,12 +52,12 @@ npm run lint
 - Expo: ~53.0.12
 - Expo Router: ~5.1.0
 - Supabase: ^2.50.0
-- Other commonly used libraries:  
-  - @expo/vector-icons  
-  - react-native-paper  
-  - react-native-calendars  
-  - lottie-react-native  
-  - react-native-webview  
+- Other commonly used libraries:
+  - @expo/vector-icons
+  - react-native-paper
+  - react-native-calendars
+  - lottie-react-native
+  - react-native-webview
   - and more
 
 For a full list of dependencies, see [package.json](./package.json).
