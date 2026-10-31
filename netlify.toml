@@ -1,0 +1,7 @@
+[build]
+  command = "npx --yes pnpm@9.15.9 install --frozen-lockfile --prod=false && npm run build:web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_VERSION = "9.15.9"
