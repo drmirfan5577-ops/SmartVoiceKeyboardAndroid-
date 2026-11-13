@@ -20,7 +20,7 @@ jobs:
         run: git clone --depth 1 "https://x-access-token:$TOKEN@github.com/$GITHUB_REPOSITORY.git" app
       - uses: pnpm/action-setup@v4
         with:
-          package_json_file: /home/runner/app/package.json
+          version: 9.15.9
       - uses: actions/setup-node@v4
         with:
           node-version: 22
