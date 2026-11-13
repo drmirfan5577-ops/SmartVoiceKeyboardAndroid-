@@ -19,6 +19,8 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git clone --depth 1 "https://x-access-token:$TOKEN@github.com/$GITHUB_REPOSITORY.git" app
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: /home/runner/app/package.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
