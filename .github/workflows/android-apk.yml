@@ -9,8 +9,15 @@ permissions:
 jobs:
   apk:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /home/runner/app
     steps:
-      - uses: actions/checkout@v4
+      - name: Clone to short path
+        working-directory: /home/runner
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git clone --depth 1 "https://x-access-token:$TOKEN@github.com/$GITHUB_REPOSITORY.git" app
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -37,11 +44,11 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: smart-voice-keyboard-apk
-          path: out/smart-voice-keyboard.apk
+          path: /home/runner/app/out/smart-voice-keyboard.apk
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: latest-apk
           name: SMART Voice Keyboard — APK (${{ github.run_number }})
           body: خودکار بلڈ شدہ اینڈرائیڈ APK
-          files: out/smart-voice-keyboard.apk
+          files: /home/runner/app/out/smart-voice-keyboard.apk
           make_latest: true
