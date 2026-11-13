@@ -150,7 +150,11 @@
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "react-dev-inspector": "^2.0.1",
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "babel-preset-expo": "~13.0.0",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9"
   },
   "private": true,
   "packageManager": "pnpm@9.15.9"

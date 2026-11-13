@@ -15,15 +15,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
       - name: Install
-        run: pnpm install --frozen-lockfile --prod=false
-      - name: Ensure babel preset available
-        run: pnpm add -D babel-preset-expo
+        run: pnpm install --no-frozen-lockfile --prod=false
       - name: Prebuild android project
         env:
           CI: 1
