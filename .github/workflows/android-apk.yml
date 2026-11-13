@@ -22,6 +22,8 @@ jobs:
           java-version: 17
       - name: Install
         run: pnpm install --frozen-lockfile --prod=false
+      - name: Ensure babel preset available
+        run: pnpm add -D babel-preset-expo
       - name: Prebuild android project
         env:
           CI: 1
