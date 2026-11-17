@@ -34,7 +34,19 @@ jobs:
         env:
           CI: 1
         run: npx expo prebuild --platform android --no-install
+      - name: Tune Gradle memory
+        run: |
+          {
+            echo ''
+            echo 'org.gradle.jvmargs=-Xmx6g -XX:MaxMetaspaceSize=1g'
+            echo 'org.gradle.parallel=false'
+            echo 'org.gradle.workers.max=2'
+            echo 'android.enableR8.fullMode=false'
+          } >> android/gradle.properties
+          tail -8 android/gradle.properties
       - name: Gradle assembleRelease
+        env:
+          GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx6g -Dorg.gradle.workers.max=2'
         run: |
           cd android
           chmod +x gradlew
